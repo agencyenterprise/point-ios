@@ -34,7 +34,7 @@ let package = Package(
         .binaryTarget(
             name: "PointSDKBinary",
             url: "https://github.com/agencyenterprise/point-sdk-ios-sample/blob/main/PointSDK.xcframework.zip",
-            checksum: "a051917cb854cd15b9f96ea011831e959bb1bd7e8aaaa3851efc57f0ca56651a"
+            checksum: "4262045041799fc392d37a68599bd0220de70fecd86a6467d1d6ccbaac04843f"
         ),
         .testTarget(
             name: "PointSDKTests",
