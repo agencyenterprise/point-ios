@@ -23,7 +23,7 @@ let package = Package(
     targets: [
         .binaryTarget(
             name: "PointSDKBinary",
-            url: "https://github.com/agencyenterprise/point-sdk-ios-sample/blob/main/PointSDK.xcframework.zip",
+            url: "https://github.com/agencyenterprise/point-sdk-ios-sample/releases/download/0.0.1/PointSDK.xcframework.zip",
             checksum: "a051917cb854cd15b9f96ea011831e959bb1bd7e8aaaa3851efc57f0ca56651a"
         ),
     ]
