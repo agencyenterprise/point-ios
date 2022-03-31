@@ -1,4 +1,4 @@
-// swift-tools-version:5.3
+// swift-tools-version:5.5
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -10,7 +10,7 @@ let package = Package(
         .library(
             name: "PointSDK",
             type: .dynamic,
-            targets: ["PointSDK", "PointSDKBinary"]
+            targets: ["PointSDKBinary"]
         ),
     ],
     dependencies: [
@@ -21,26 +21,10 @@ let package = Package(
         ),
     ],
     targets: [
-        .target(
-            name: "PointSDK",
-            dependencies: [
-                .byName(name: "Apollo", condition: .when(platforms: [.iOS])),
-            ],
-            path: "PointSDK",
-            exclude: [
-                "API/Apollo/",
-            ]
-        ),
         .binaryTarget(
             name: "PointSDKBinary",
             url: "https://github.com/agencyenterprise/point-sdk-ios-sample/blob/main/PointSDK.xcframework.zip",
-            checksum: "4262045041799fc392d37a68599bd0220de70fecd86a6467d1d6ccbaac04843f"
-        ),
-        .testTarget(
-            name: "PointSDKTests",
-            dependencies: [
-                "PointSDK",
-            ]
+            checksum: "a051917cb854cd15b9f96ea011831e959bb1bd7e8aaaa3851efc57f0ca56651a"
         ),
     ]
 )
