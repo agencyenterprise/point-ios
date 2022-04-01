@@ -28,10 +28,10 @@ let package = Package(
         .target(
             name: "Point-iOS",
             dependencies: [
-                .byName(name: "PointSDK", condition: .when(platforms: [.iOS])),
-                .byName(name: "Apollo", condition: .when(platforms: [.iOS])),
+                .target(name: "PointSDK", condition: .when(platforms: [.iOS])),
+                .target(name: "Apollo", condition: .when(platforms: [.iOS])),
             ],
-            path: "PointSDK"
+            path: "Point-iOS"
         ),
     ]
 )
