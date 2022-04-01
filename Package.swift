@@ -28,12 +28,12 @@ let package = Package(
         .target(
             name: "Point-iOS",
             dependencies: [
-                .target(name: "PointSDK", condition: .when(platforms: [.iOS])),
                 .package(
                     name: "Apollo",
                     url: "https://github.com/apollographql/apollo-ios",
                     .upToNextMajor(from: Version(0, 51, 2))
                 ),
+                .target(name: "PointSDK", condition: .when(platforms: [.iOS])),
             ],
             path: "Point-iOS"
         ),
