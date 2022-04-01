@@ -35,7 +35,7 @@ let package = Package(
                     .upToNextMajor(from: Version(0, 51, 2))
                 ),
             ],
-            path: "Point-iOS"
+            path: "PointSDK"
         ),
     ]
 )
