@@ -22,8 +22,8 @@ let package = Package(
     targets: [
         .binaryTarget(
             name: "PointSDK",
-            url: "https://github.com/agencyenterprise/point-ios/releases/download/0.5.1/PointSDK.xcframework.zip",
-            checksum: "0ad7f5c30307c0599b478897724f6be1163ad525fa375379332b92b01bc3f45e"
+            url: "https://github.com/agencyenterprise/point-ios/releases/download/0.1.0/PointSDK.xcframework.zip",
+            checksum: "f76a560490bdc1e7c220bb45cd17d7c71996a9e44c547190c5562669abafef59"
         ),
         .target(
             name: "PointSDKWrapper",
