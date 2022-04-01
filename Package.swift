@@ -31,7 +31,7 @@ let package = Package(
                 .byName(name: "PointSDK", condition: .when(platforms: [.iOS])),
                 .byName(name: "Apollo", condition: .when(platforms: [.iOS])),
             ],
-            path: "PointSDK"
+            path: "PointDependencies"
         ),
     ]
 )
