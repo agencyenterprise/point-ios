@@ -9,7 +9,7 @@ let package = Package(
     products: [
         .library(
             name: "PointSDK",
-            targets: ["PointDependencies"]
+            targets: ["Point-iOS"]
         ),
     ],
     dependencies: [
@@ -26,12 +26,12 @@ let package = Package(
             checksum: "0ad7f5c30307c0599b478897724f6be1163ad525fa375379332b92b01bc3f45e"
         ),
         .target(
-            name: "PointDependencies",
+            name: "Point-iOS",
             dependencies: [
                 .byName(name: "PointSDK", condition: .when(platforms: [.iOS])),
                 .byName(name: "Apollo", condition: .when(platforms: [.iOS])),
             ],
-            path: "PointDependencies"
+            path: "Point-iOS"
         ),
     ]
 )
