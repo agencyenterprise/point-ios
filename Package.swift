@@ -9,7 +9,7 @@ let package = Package(
     products: [
         .library(
             name: "PointSDK",
-            targets: ["Point-iOS"]
+            targets: ["PointSDK"]
         ),
     ],
     dependencies: [
@@ -21,18 +21,18 @@ let package = Package(
     ],
     targets: [
         .binaryTarget(
-            name: "PointSDK",
+            name: "Point-iOS",
             url: "https://github.com/agencyenterprise/point-ios/releases/download/0.5.1/PointSDK.xcframework.zip",
             checksum: "0ad7f5c30307c0599b478897724f6be1163ad525fa375379332b92b01bc3f45e"
         ),
         .target(
-            name: "Point-iOS",
+            name: "PointSDK",
             dependencies: [
                 .byName(name: "Apollo", condition: .when(platforms: [.iOS])),
                 .target(name: "PointSDK", condition: .when(platforms: [.iOS])),
             ],
             path: "Point-iOS",
-            publicHeadersPath: "PointSDK"
+            publicHeadersPath: "PointSDK.xcframework/Headers/"
         ),
     ]
 )
