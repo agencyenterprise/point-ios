@@ -32,7 +32,7 @@ let package = Package(
                 .target(name: "PointSDK", condition: .when(platforms: [.iOS])),
             ],
             path: "Point-iOS",
-            publicHeadersPath: "."
+            publicHeadersPath: "PointSDK"
         ),
     ]
 )
