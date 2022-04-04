@@ -8,6 +8,8 @@ To add PointSDK to your project, just add it using Swift Package Manager. You ca
 
 You can import the SDK into your swift files with `import PointSDK`
 
+PointSDK requires XCode 13.3 or higher to run.
+
 ## Documentation
 
 The SDK package is shipped with a XCode friendly DocC documentation.
