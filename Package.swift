@@ -3,6 +3,10 @@
 
 import PackageDescription
 
+let version = "0.1.0"
+let moduleName = "PointSDK"
+let checksum = "830a17acd070710a988fd83cc01ef053993dbf7905302649741e1b6c37eb604c"
+
 let package = Package(
     name: "PointSDK",
     platforms: [.iOS(.v13)],
@@ -21,9 +25,9 @@ let package = Package(
     ],
     targets: [
         .binaryTarget(
-            name: "PointSDK",
-            url: "https://github.com/agencyenterprise/point-ios/releases/download/0.1.0/PointSDK.xcframework.zip",
-            checksum: "830a17acd070710a988fd83cc01ef053993dbf7905302649741e1b6c37eb604c"
+            name: moduleName,
+            url: "https://github.com/agencyenterprise/point-ios/releases/download/\(version)/\(moduleName).xcframework.zip",
+            checksum: checksum
         ),
         .target(
             name: "PointSDKWrapper",
