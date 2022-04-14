@@ -3,7 +3,7 @@ import SwiftUI
 // MARK: - LoginView
 
 struct LoginView: View {
-    @State private var email = "anny+2@ae.studio"
+    @State private var email = "test@areyouonpoint.co"
     @State private var password = "PointTest123@"
 
     @Binding var error: Swift.Error?
