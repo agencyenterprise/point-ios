@@ -22,6 +22,11 @@ let package = Package(
             url: "https://github.com/apollographql/apollo-ios",
             .upToNextMajor(from: Version(0, 51, 2))
         ),
+        .package(
+            name: "SQLite",
+            url: "https://github.com/stephencelis/SQLite.swift",
+            .upToNextMajor(from: Version(0, 13, 3))
+        ),
     ],
     targets: [
         .binaryTarget(
@@ -33,6 +38,7 @@ let package = Package(
             name: "PointSDKWrapper",
             dependencies: [
                 .byName(name: "Apollo", condition: .when(platforms: [.iOS])),
+                .byName(name: "SQLite", condition: .when(platforms: [.iOS])),
                 .target(name: "PointSDK", condition: .when(platforms: [.iOS])),
             ],
             path: "Point-iOS",
