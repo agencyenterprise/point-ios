@@ -56,7 +56,8 @@ final class APIViewModel: ObservableObject {
     private let healthKitManager: HealthKitManager?
     private let dataManager: DataManager
     private static var defaultStartDate: Date { Calendar.current.date(byAdding: .weekOfYear, value: -5, to: .init())! }
-    private var listenerTask: Task<Void, Error>?
+    private var workoutListenerTask: Task<(), Error>?
+    private var heartRateListenerTask: Task<(), Error>?
 
     init(healthKitManager: HealthKitManager?, dataManager: DataManager) {
         self.dataManager = dataManager
@@ -79,7 +80,7 @@ final class APIViewModel: ObservableObject {
                     .receive(on: DispatchQueue.main)
                     .sink { _ in } receiveValue: { [weak self] in
                         guard let self = self else { return }
-                        self.foregroundListenerWorkout = self.mapToState(value: $0)
+                        self.foregroundListenerSteps = self.mapToState(value: $0)
                     },
 
                     try await healthKitManager.poll(timeInterval: TimeInterval(listenInterval)) {
@@ -89,16 +90,7 @@ final class APIViewModel: ObservableObject {
                     .sink { _ in } receiveValue: { [weak self] in
                         guard let self = self else { return }
                         self.foregroundListenerBasalEnergyBurned = self.mapToState(value: $0)
-                    },
-
-                    try await healthKitManager.poll(timeInterval: TimeInterval(listenInterval)) {
-                        .heartRate(startDate: listenStartDate, limit: 10)
                     }
-                    .receive(on: DispatchQueue.main)
-                    .sink { _ in } receiveValue: { [weak self] in
-                        guard let self = self else { return }
-                        self.foregroundListenerHeartRate = self.mapToState(value: $0)
-                    },
                 ]
             )
         } catch {
@@ -106,8 +98,8 @@ final class APIViewModel: ObservableObject {
         }
 
         do {
-            let stream = try await healthKitManager.listenWorkoutSamples()
-            listenerTask = Task { @MainActor in
+            let stream = try await healthKitManager.listen(type: .workout)
+            workoutListenerTask = Task { @MainActor in
                 do {
                     for try await sample in stream {
                         self.foregroundListenerWorkout = self.mapToState(value: sample)
@@ -118,6 +110,21 @@ final class APIViewModel: ObservableObject {
             }
         } catch {
             print("Error starting workout foreground listener \(error)")
+        }
+
+        do {
+            let stream = try await healthKitManager.listen(type: .heartRate)
+            heartRateListenerTask = Task { @MainActor in
+              do {
+                  for try await sample in stream {
+                      self.foregroundListenerHeartRate = self.mapToState(value: sample)
+                  }
+              } catch {
+                  print(error)
+              }
+            }
+        } catch {
+            print("Error starting heart rate foreground listener \(error)")
         }
     }
 
@@ -158,7 +165,7 @@ final class APIViewModel: ObservableObject {
             try await healthKitManager.sync(query: .basalEnergyBurned(startDate: defaultStartDate))
         }
         stepCountSample = await mapToState {
-            try await healthKitManager.sync(query: .stepCount(startDate: .init()))
+            try await healthKitManager.sync(query: .stepCount(startDate: defaultStartDate))
         }
         heartRateVariability = await mapToState {
             try await healthKitManager.sync(query: .heartRateVariabilitySDNN(startDate: defaultStartDate))

@@ -49,7 +49,7 @@ struct APIView: View {
                 await viewModel.startForegroundListeners()
             }
         } else {
-            Text("Device doesn't support health kit.")
+            Text("Running without Health Kit.")
         }
     }
 }

@@ -46,8 +46,8 @@ struct SDKFeaturesView: View {
                 APIView(
                     viewModel: .init(healthKitManager: healthKitManager, dataManager: dataManager),
                     userViewModel: .init(pointHealthKitManager: healthKitManager, pointDataManager: dataManager),
-                    historicalViewModel: .init(healthKitManager: healthKitManager!),
-                    latestDataViewModel: .init(healthKitManager: healthKitManager!)
+                    historicalViewModel: .init(healthKitManager: healthKitManager),
+                    latestDataViewModel: .init(healthKitManager: healthKitManager)
                 )
             }
 

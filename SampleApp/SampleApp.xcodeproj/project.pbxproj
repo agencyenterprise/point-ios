@@ -12,7 +12,6 @@
 		0F51202227D7B19B0036DBE3 /* BatchSyncView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F51202127D7B19B0036DBE3 /* BatchSyncView.swift */; };
 		0F51801D27DFD3A50080B351 /* LatestDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F51801C27DFD3A50080B351 /* LatestDataViewModel.swift */; };
 		0F51801F27DFD3F70080B351 /* LatestDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F51801E27DFD3F70080B351 /* LatestDataView.swift */; };
-		0F5DD45B27F7C49600799131 /* PointSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 0F5DD45A27F7C49600799131 /* PointSDK */; };
 		0F96AB4F27BEC5ED00B8297B /* UserDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F96AB4E27BEC5ED00B8297B /* UserDataView.swift */; };
 		0FA392AF27AC646900AA9B5C /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA392AE27AC646900AA9B5C /* LoginView.swift */; };
 		0FA4D61327ADB24B00B92970 /* Auth0.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0FA4D61227ADB24B00B92970 /* Auth0.plist */; };
@@ -20,6 +19,7 @@
 		0FA89852279F58E9005CF5CA /* APIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA89851279F58E9005CF5CA /* APIView.swift */; };
 		0FA89854279F58EA005CF5CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0FA89853279F58EA005CF5CA /* Assets.xcassets */; };
 		0FA89857279F58EA005CF5CA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0FA89856279F58EA005CF5CA /* Preview Assets.xcassets */; };
+		0FB63443280F26AD00DABF46 /* PointSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 0FB63442280F26AD00DABF46 /* PointSDK */; };
 		0FB7444927C7ECEE0044CADC /* WorkoutsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB7444827C7ECEE0044CADC /* WorkoutsViewModel.swift */; };
 		0FB7444B27C7F1DF0044CADC /* WorkoutsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB7444A27C7F1DF0044CADC /* WorkoutsView.swift */; };
 		0FB7444D27C7F6CD0044CADC /* WorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB7444C27C7F6CD0044CADC /* WorkoutView.swift */; };
@@ -103,7 +103,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD5C2FF027C801DC006C006C /* Auth0 in Frameworks */,
-				0F5DD45B27F7C49600799131 /* PointSDK in Frameworks */,
+				0FB63443280F26AD00DABF46 /* PointSDK in Frameworks */,
 				BD324F9827A2D55100170E6B /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -234,7 +234,7 @@
 			name = SampleApp;
 			packageProductDependencies = (
 				BD5C2FEF27C801DC006C006C /* Auth0 */,
-				0F5DD45A27F7C49600799131 /* PointSDK */,
+				0FB63442280F26AD00DABF46 /* PointSDK */,
 			);
 			productName = "Sample App";
 			productReference = 0FA8984C279F58E9005CF5CA /* SampleApp.app */;
@@ -266,7 +266,7 @@
 			mainGroup = 0FA89843279F58E9005CF5CA;
 			packageReferences = (
 				BD5C2FEE27C801DC006C006C /* XCRemoteSwiftPackageReference "Auth0.swift" */,
-				0F5DD45927F7C49600799131 /* XCRemoteSwiftPackageReference "point-ios" */,
+				0FB63441280F26AD00DABF46 /* XCRemoteSwiftPackageReference "point-ios" */,
 			);
 			productRefGroup = 0FA8984D279F58E9005CF5CA /* Products */;
 			projectDirPath = "";
@@ -543,12 +543,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		0F5DD45927F7C49600799131 /* XCRemoteSwiftPackageReference "point-ios" */ = {
+		0FB63441280F26AD00DABF46 /* XCRemoteSwiftPackageReference "point-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/agencyenterprise/point-ios";
 			requirement = {
-				branch = main;
-				kind = branch;
+				kind = exactVersion;
+				version = 0.1.3;
 			};
 		};
 		BD5C2FEE27C801DC006C006C /* XCRemoteSwiftPackageReference "Auth0.swift" */ = {
@@ -562,9 +562,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		0F5DD45A27F7C49600799131 /* PointSDK */ = {
+		0FB63442280F26AD00DABF46 /* PointSDK */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 0F5DD45927F7C49600799131 /* XCRemoteSwiftPackageReference "point-ios" */;
+			package = 0FB63441280F26AD00DABF46 /* XCRemoteSwiftPackageReference "point-ios" */;
 			productName = PointSDK;
 		};
 		BD5C2FEF27C801DC006C006C /* Auth0 */ = {
