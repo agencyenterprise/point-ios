@@ -14,8 +14,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/agencyenterprise/point-ios",
       "state" : {
-        "revision" : "ca12507a9ec576e0b489d34943c91cfec28f4d0b",
-        "version" : "0.1.7"
+        "revision" : "35296766eba02fa17097b3f1ef37a05c19879435",
+        "version" : "0.1.9"
       }
     },
     {

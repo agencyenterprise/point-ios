@@ -26,8 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     // MARK: Step 6 - Enabling foreground listeners
-    func applicationDidBecomeActive(_ application: UIApplication) {
-    }
 
     func applicationWillResignActive(_ application: UIApplication) {
         Point.healthKit?.stopAllForegroundListeners()

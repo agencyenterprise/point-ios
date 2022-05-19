@@ -34,19 +34,13 @@ class ViewController: UIViewController {
             // MARK: Step 5 - Enabling background deliveries
             await enableBackgroundDelivery()
             
-            do {
-                let _ = try await Point.healthKit?.enableAllForegroundListeners()
-                print("Foreground listeners ok")
-            } catch {
-                print("Error enabling foreground listeners: \(error)")
-            }
-
-            // MARK: Step 6 - Go to AppDelegate.swift
+            // MARK: Step 6 - Enabling foreground listeners
+            await enableForegroundListener()
 
             // MARK: Step 7 - Getting user data
             await getUserData()
 
-            // MARK: Step 7 - Getting user health metrics
+            // MARK: Step 8 - Getting user health metrics
             await getHeathMetrics()
         }
 
@@ -80,12 +74,21 @@ extension ViewController {
             print("Error enabling background deliveries: \(error)")
         }
     }
+
+    func enableForegroundListener() async {
+        do {
+            let _ = try await Point.healthKit?.enableAllForegroundListeners()
+            print("Foreground listeners ok")
+        } catch {
+            print("Error enabling foreground listeners: \(error)")
+        }
+    }
 }
 
 extension ViewController {
     @MainActor func getUserData() async {
         do {
-            guard let userData = try await Point.dataManager.getUserData() else {
+            guard let userData = try await Point.healthDataService.getUserData() else {
                 print("No user data.")
                 return
             }
@@ -104,8 +107,8 @@ extension ViewController {
 
     @MainActor func getHeathMetrics() async {
         do {
-            let metrics = try await Point.dataManager.getHealthMetrics(
-                filter: [HealthMetric.Kind.restingHr],
+            let metrics = try await Point.healthDataService.getHealthMetrics(
+                filter: [.restingHr],
                 workoutId: nil,
                 date: nil
             )
