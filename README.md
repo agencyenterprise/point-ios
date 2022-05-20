@@ -12,8 +12,8 @@ PointSDK requires XCode 13.3 or higher to run.
 
 ## Documentation
 
-The SDK package is shipped with a XCode friendly DocC documentation.
+The SDK package is shipped with a Xcode friendly DocC documentation.
 
 You can also check it here: https://agencyenterprise.github.io/point-ios/documentation/pointsdk
 
-Additionally, there  is a Sample App on this repository that you can use as an example of how to use the SDK.
+Additionally, there  is a Reference App on this repository that you can use as an example of how to use the SDK.
