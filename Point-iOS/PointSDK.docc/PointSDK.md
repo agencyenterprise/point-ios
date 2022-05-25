@@ -1,4 +1,4 @@
-# ``PointSDKWrapper``
+# ``PointSDK``
 Access comprehensive health and fitness user data collected from across multiple wearable devices.
 
 ## Overview
@@ -26,5 +26,5 @@ See <doc:GettingStarted> to learn how to configure you project and start using t
 ## Topics
 
 ### SDK
-- ``PointSDK/Point``
+- ``PointSDK.xcframework/Point``
 - ``APIEnvironment``
