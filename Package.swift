@@ -43,7 +43,7 @@ let package = Package(
             ],
             path: "Point-iOS",
             exclude: [
-                "SampleApp",
+                "../PointReferenceApp",
             ]
         ),
     ]
