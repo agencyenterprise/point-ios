@@ -13,7 +13,7 @@ let package = Package(
     products: [
         .library(
             name: "PointSDK",
-            targets: ["PointSDK"]
+            targets: ["PointSDKWrapper", "PointSDK"]
         ),
     ],
     dependencies: [
@@ -39,6 +39,7 @@ let package = Package(
             dependencies: [
                 .byName(name: "Apollo", condition: .when(platforms: [.iOS])),
                 .byName(name: "SQLite", condition: .when(platforms: [.iOS])),
+                .target(name: "PointSDK", condition: .when(platforms: [.iOS])),
             ],
             path: "Point-iOS",
             exclude: [
