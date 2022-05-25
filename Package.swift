@@ -13,7 +13,19 @@ let package = Package(
     products: [
         .library(
             name: "PointSDK",
-            targets: ["PointSDKWrapper"]
+            targets: ["PointSDKWrapper"],
+            dependencies: [
+                .package(
+                    name: "Apollo",
+                    url: "https://github.com/apollographql/apollo-ios",
+                    .upToNextMajor(from: Version(0, 51, 2))
+                ),
+                .package(
+                    name: "SQLite",
+                    url: "https://github.com/stephencelis/SQLite.swift",
+                    .upToNextMajor(from: Version(0, 13, 3))
+                ),
+            ]
         ),
     ],
     dependencies: [
@@ -33,18 +45,6 @@ let package = Package(
             name: moduleName,
             url: "https://github.com/agencyenterprise/point-ios/releases/download/\(version)/\(moduleName).xcframework.zip",
             checksum: checksum
-        ),
-        .target(
-            name: "PointSDKWrapper",
-            dependencies: [
-                .byName(name: "Apollo", condition: .when(platforms: [.iOS])),
-                .byName(name: "SQLite", condition: .when(platforms: [.iOS])),
-                .target(name: "PointSDK", condition: .when(platforms: [.iOS])),
-            ],
-            path: "Point-iOS",
-            exclude: [
-                "SampleApp",
-            ]
         ),
     ]
 )
