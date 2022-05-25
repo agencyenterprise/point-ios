@@ -13,7 +13,7 @@ let package = Package(
     products: [
         .library(
             name: "PointSDK",
-            targets: ["PointSDK", "PointSDKWrapper"]
+            targets: ["PointSDK"]
         ),
     ],
     dependencies: [
