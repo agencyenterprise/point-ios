@@ -1,0 +1,38 @@
+@Tutorials(name: "PointSDK") {
+    @Intro(title: "Point SDK Tutorial") {
+        Learn how to use PointSDK.
+    }
+    
+    @Chapter(name: "Basic Steps") {
+        Learn how to create a simple app using PointSDK.
+        
+        @Image(source: <#file#>, alt: "<#accessible description#>")
+        
+        @TutorialReference(tutorial: "doc:TutorialGettingStarted")
+        @TutorialReference(tutorial: "doc:TutorialStartDataCollection")
+        @TutorialReference(tutorial: "doc:TutorialHealthService")
+        
+    }
+
+    @Resources {
+        Find additional information about Point SDK.
+        
+        @SampleCode(destination: "https://github.com/agencyenterprise/point-ios") {
+            Check out the Reference App, a very simple app built following the steps of this tutorial.
+            - [Download](https://github.com/agencyenterprise/point-ios/raw/reference-app/PointReferenceApp.zip)
+        }
+
+        @Documentation(destination: "https://agencyenterprise.github.io/point-ios/documentation/pointsdk") {
+            
+            Official Point SDK documentation website.
+            
+            - [Collecting Raw Health Data](https://agencyenterprise.github.io/point-ios/documentation/pointsdk/pointhealthkit)
+            
+            - [Accessing Point Health Service](https://agencyenterprise.github.io/point-ios/documentation/pointsdk/pointapi)
+
+            - [Creating an external user](https://github.com/agencyenterprise/point-ios/wiki/Registering-and-authenticating-external-users-at-Point#creating-an-external-user)
+
+            - [Getting an access token for a specific user](https://github.com/agencyenterprise/point-ios/wiki/Registering-and-authenticating-external-users-at-Point#getting-an-access-token-for-a-specific-user)
+        }
+    }
+}

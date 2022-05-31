@@ -22,9 +22,11 @@ See <doc:AuthenticatingUsers> to learn how to link your user accounts with Point
 ## Adding to your project
 See <doc:GettingStarted> to learn how to configure you project and start using the SDK.
 
+We also provide an interactive <doc:TutorialTableOfContents> to learn how to set up a basic app using the SDK.
+
 
 ## Topics
 
 ### SDK
-- ``PointSDK.xcframework/Point``
+- ``PointSDK/Point``
 - ``APIEnvironment``
