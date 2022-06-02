@@ -3,9 +3,9 @@
 
 import PackageDescription
 
-let version = "0.1.11"
+let version = "0.1.12"
 let moduleName = "PointSDK"
-let checksum = "0ed734a3d943dd906dc2714e0a05b8859d133c7dc214a67df7f4a0b8c9474e85"
+let checksum = "c30c814cd6c694ea1f4c37f6adc771efae3d1497d6fb0b33b0ad18cbb32b7e7b"
 
 let package = Package(
     name: "PointSDK",
