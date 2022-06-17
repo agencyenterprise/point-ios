@@ -393,7 +393,7 @@
 			repositoryURL = "https://github.com/agencyenterprise/point-ios";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.1.9;
+				minimumVersion = 0.1.15;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

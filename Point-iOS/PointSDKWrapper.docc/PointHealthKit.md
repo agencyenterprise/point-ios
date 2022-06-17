@@ -30,64 +30,42 @@ func requestPermissions() async {
 ## Background Listeners
 Background listeners run on top of HealthKit's background delivery. When a background listener is set, it wakes up your app whenever a process adds new samples of the specified type, and then syncs those to the Point database.
 
-They are split into two parts: setup and enable.
+### Start
 
-### Setup
+You need to start the background listeners you wish to run. This must be done as soon as possible, such as when the app finishes launching.
 
-First, you need to setup the background queries you wish to run. This must be done as soon as possible, such as when the app finishes launching.
-
-> This can be done (and we encourage you to do so) before asking for user authorization for the given type. If the user denies authorization, the query will simply have no effect.
-
-You can set up background queries for all types you have set up the SDK with.
+You can set up background listeners for all types you have set up the SDK with.
 ```swift
-func setupAllBackgroundQueries() async {
-    guard let healthKitManager = healthKitManager else { return }
-    
-    await healthKitManager.setupAllBackgroundQueries()
-}
-```
-
-You can also setup a background query for just a specific ``HealthQueryType``.
-```swift
-func setupHeartRateBackgroundQuery() async {
-    guard let healthKitManager = Point.healthKit else { return }
-    
-    await healthKitManager.setupBackgroundQuery(for: .heartRate)
-}
-```
-
-### Enable
-
-After asking for user permission for the desired sample types, you must enable the background listeners you have set up.
-
-You can enable the background listeners for all ``HealthQueryType`` you have set up the SDK with.
-```swift
-func enableAllBackgroundListeners() async {
-    guard let healthKitManager = Point.healthKit else { return }
-    do {
-        let result = try await healthKitManager.enableAllBackgroundDelivery()
-        print("Background Delivery Enabled: \(result)")
-    } catch {
-        print("Background Delivery Error:", error)
+func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+    Point.verbose = true
+    Point.setup(clientId: "Your Client ID", clientSecret: "Your Client Secret", queryTypes: Set(HealthQueryType.allCases), environment: appEnvironment)
+    Task {
+        guard let healthKitManager = Point.healthKit else { return }
+        
+        do {
+            try await healthKitManager.startAllBackgroundListeners()
+        } catch {
+            print(error.localizedDescription)
+        }
     }
+    return true
 }
 ```
-You can also enable a background listener for just a specific ``HealthQueryType``.
+
+You can also start a background listener for just a specific ``HealthQueryType``.
 ```swift
-func enableBackgroundListener() async {
+func startHeartRateBackgroundListener() async {
     guard let healthKitManager = Point.healthKit else { return }
-    do {
-        let isEnabled = try await healthKitManager.enableBackgroundDelivery(for: HealthQueryType.heartRate)
-        print("Background Delivery Enabled: \(isEnabled)")
-    } catch {
-        print("Background Delivery Error:", error)
-    }
+    
+    await healthKitManager.startBackgroundListeners(for: .heartRate)
 }
 ```
 
 > Important: If you plan on supporting background listeners, set up all your types as soon as possible in application launch, for more information see: [Enable background delivery official docs](https://developer.apple.com/documentation/healthkit/hkhealthstore/1614175-enablebackgrounddelivery)
 
 > Important: For iOS 15 you must enable the HealthKit Background Delivery by adding the com.apple.developer.healthkit.background-delivery entitlement to your app.
+
+> Important: Since the listeners are meant to be started in application launch, on the very first usage/session the queries will fail and not stay alive. This is because you start background listeners before asking for user permissions. If you want to collect data in background from the first moment, we recommend also calling the start methods once after requesting user permissions.
 
 ### Stop
 
@@ -116,7 +94,7 @@ func stopAllBackgroundListeners() async {
     }
 }
 ```
-> Important: Avoid stopping background delivery in the application lifecycle, we recommend using it only on user logout.
+> Important: Avoid stopping background listeners in the application lifecycle, we recommend using it only on user logout.
 
 ## Foreground Listeners
 A foreground listener runs a query that monitors Apple's Health while your app is on foreground. They can be used to automatically get and upload new data from Apple's Health to the Point database as soon as they are available.

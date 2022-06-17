@@ -30,17 +30,14 @@ class ViewController: UIViewController {
             await setUserToken()
             
             // MARK: Step 4 - Go to AppDelegate.swift
-
-            // MARK: Step 5 - Enabling background deliveries
-            await enableBackgroundDelivery()
             
-            // MARK: Step 6 - Enabling foreground listeners
+            // MARK: Step 5 - Enabling foreground listeners
             await enableForegroundListener()
 
-            // MARK: Step 7 - Getting user data
+            // MARK: Step 6 - Getting user data
             await getUserData()
 
-            // MARK: Step 8 - Getting user health metrics
+            // MARK: Step 7 - Getting user health metrics
             await getHeathMetrics()
         }
 
@@ -63,15 +60,6 @@ extension ViewController {
             print("Token ok")
         } catch {
             print("Error setting the user token or fetching user past data: \(error)")
-        }
-    }
-
-    func enableBackgroundDelivery() async {
-        do {
-            let _ = try await Point.healthKit?.enableAllBackgroundDelivery()
-            print("Background deliveries ok")
-        } catch {
-            print("Error enabling background deliveries: \(error)")
         }
     }
 
