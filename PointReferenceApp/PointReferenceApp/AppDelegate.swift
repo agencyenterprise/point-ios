@@ -20,7 +20,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         Task {
             // MARK: Step 4 - Setting up background listeners
-            await Point.healthKit?.setupAllBackgroundQueries()
+            do {
+                try await Point.healthKit?.startAllBackgroundListeners()
+            } catch {
+                print(error.localizedDescription)
+            }
         }
         return true
     }
