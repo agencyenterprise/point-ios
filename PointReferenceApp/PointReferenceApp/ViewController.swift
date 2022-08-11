@@ -28,17 +28,13 @@ class ViewController: UIViewController {
             // MARK: Step 3 - User authentication
             // This will trigger past data sync
             await setUserToken()
-            
             // MARK: Step 4 - Go to AppDelegate.swift
-            
-            // MARK: Step 5 - Enabling foreground listeners
-            await enableForegroundListener()
 
-            // MARK: Step 6 - Getting user data
+            // MARK: Step 5 - Getting user data
             await getUserData()
 
-            // MARK: Step 7 - Getting user health metrics
-            await getHeathMetrics()
+            // MARK: Step 6 - Getting user health metrics
+            await getHealthMetrics()
         }
 
     }
@@ -59,16 +55,7 @@ extension ViewController {
             try await Point.setUserToken(accessToken: self.getUserToken())
             print("Token ok")
         } catch {
-            print("Error setting the user token or fetching user past data: \(error)")
-        }
-    }
-
-    func enableForegroundListener() async {
-        do {
-            let _ = try await Point.healthKit?.enableAllForegroundListeners()
-            print("Foreground listeners ok")
-        } catch {
-            print("Error enabling foreground listeners: \(error)")
+            print("Error setting the user token: \(error)")
         }
     }
 }
@@ -93,10 +80,10 @@ extension ViewController {
         }
     }
 
-    @MainActor func getHeathMetrics() async {
+    @MainActor func getHealthMetrics() async {
         do {
             let metrics = try await Point.healthDataService.getHealthMetrics(
-                filter: [.restingHr],
+                types: [.restingHr],
                 workoutId: nil,
                 date: nil
             )
