@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7E29318A2836A0C400A311C0 /* PointSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 7E2931892836A0C400A311C0 /* PointSDK */; };
+		7E410A1228A5919F00A51949 /* PointSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 7E410A1128A5919F00A51949 /* PointSDK */; };
 		7EB72561282A63B1007BD1FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB72560282A63B1007BD1FE /* AppDelegate.swift */; };
 		7EB72563282A63B1007BD1FE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB72562282A63B1007BD1FE /* SceneDelegate.swift */; };
 		7EB72565282A63B1007BD1FE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB72564282A63B1007BD1FE /* ViewController.swift */; };
@@ -35,7 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7E29318A2836A0C400A311C0 /* PointSDK in Frameworks */,
+				7E410A1228A5919F00A51949 /* PointSDK in Frameworks */,
 				7EB7257A282A6E61007BD1FE /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -100,7 +100,7 @@
 			);
 			name = PointReferenceApp;
 			packageProductDependencies = (
-				7E2931892836A0C400A311C0 /* PointSDK */,
+				7E410A1128A5919F00A51949 /* PointSDK */,
 			);
 			productName = PointReferenceApp;
 			productReference = 7EB7255D282A63B1007BD1FE /* PointReferenceApp.app */;
@@ -131,7 +131,7 @@
 			);
 			mainGroup = 7EB72554282A63B1007BD1FE;
 			packageReferences = (
-				7E2931882836A0C400A311C0 /* XCRemoteSwiftPackageReference "point-ios" */,
+				7E410A1028A5919F00A51949 /* XCRemoteSwiftPackageReference "point-ios" */,
 			);
 			productRefGroup = 7EB7255E282A63B1007BD1FE /* Products */;
 			projectDirPath = "";
@@ -388,20 +388,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		7E2931882836A0C400A311C0 /* XCRemoteSwiftPackageReference "point-ios" */ = {
+		7E410A1028A5919F00A51949 /* XCRemoteSwiftPackageReference "point-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/agencyenterprise/point-ios";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.1.15;
+				minimumVersion = 0.2.6;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		7E2931892836A0C400A311C0 /* PointSDK */ = {
+		7E410A1128A5919F00A51949 /* PointSDK */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 7E2931882836A0C400A311C0 /* XCRemoteSwiftPackageReference "point-ios" */;
+			package = 7E410A1028A5919F00A51949 /* XCRemoteSwiftPackageReference "point-ios" */;
 			productName = PointSDK;
 		};
 /* End XCSwiftPackageProductDependency section */
