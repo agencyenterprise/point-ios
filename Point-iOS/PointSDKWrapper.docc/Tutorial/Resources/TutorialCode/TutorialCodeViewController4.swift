@@ -2,6 +2,9 @@ import UIKit
 import PointSDK
 
 class ViewController: UIViewController {
+    @IBOutlet weak var userLabel: UILabel!
+    @IBOutlet weak var workoutLabel: UILabel!
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -19,12 +22,8 @@ class ViewController: UIViewController {
             } catch {
                 print("Error setting the user token or fetching user past data: \(error)")
             }
-
-            do {
-                let _ = try await Point.healthKit?.enableAllBackgroundDelivery()
-            } catch {
-                print("Error enabling background deliveries: \(error)")
-            }
+            
+            await getUserData()
         }
     }
 }

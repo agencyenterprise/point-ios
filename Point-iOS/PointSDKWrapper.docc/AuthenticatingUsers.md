@@ -1,17 +1,19 @@
-# Authenticating Users
+# Registering Users
 Learn how to manage access tokens to link your users accounts with Point Database.
 
 > Warning: Please do not store your `apiKey` in your client application. This is meant to be used at a backend to backend communication.
 
-## Creating an external user
+## Creating a Point user
 ```HTTP
-POST https://dev.api.areyoupoint.com/users/${userId}
-Host: dev.api.areyoupoint.com
+POST https://${env}.sdk.areyoupoint.com/users/${userId}
+Host: ${env}.sdk.areyoupoint.com
 Content-Type: application/json
 Accept: */*
 Authorization: Bearer ${apiKey}
 ```
-> Important: Please ensure that your user ids are unique and do not include user personal information on them, such as email addresses for example.
+> Important: Use a user id that can identify your user in your application. Please ensure that the id is unique and do not include user personal information on them, such as email addresses for example.
+
+> ${env} can be `dev`, `staging`, `preprod` or `production`.
 
 ### 200 Response
 ```JSON
@@ -35,8 +37,8 @@ Authorization: Bearer ${apiKey}
 ## Getting an access token for a specific user
 Generates an access token valid for a specific user
 ```HTTP
-POST https://dev.api.areyoupoint.com/users/${userId}/access_token
-Host: dev.api.areyoupoint.com
+POST https://${env}.sdk.areyoupoint.com/users/${pointUserId}/access_token
+Host: ${env}.sdk.areyoupoint.com
 Content-Type: application/json
 Accept: */*
 Authorization: Bearer ${apiKey}
@@ -51,15 +53,15 @@ Authorization: Bearer ${apiKey}
 }
 ```
 The tokens have a default expiration time of 24 hours (86400 seconds)
->Important: We recommend creating an endpoint at your backend application to serve as a bridge between your client and this endpoint, so that the client can easily request for a new `access_token` whenever the current one expires.
+> Important: We recommend creating an endpoint at your backend application to serve as a bridge between your client and this endpoint, so that the client can easily request for a new `access_token` whenever the current one expires.
 ![Get access token diagram.](get_token_diagram.png)
 
 
 ### Revoking a specific access token
 Revokes a specific access token.
 ```HTTP
-DELETE  https://dev.api.areyoupoint.com/users/${userId}/access_token/${accessToken}
-Host: dev.api.areyoupoint.com
+DELETE  https://${env}.sdk.areyoupoint.com/users/${pointUserId}/access_token/${accessToken}
+Host: ${env}.sdk.areyoupoint.com
 Content-Type: application/json
 Accept: */*
 Authorization: Bearer ${apiKey}

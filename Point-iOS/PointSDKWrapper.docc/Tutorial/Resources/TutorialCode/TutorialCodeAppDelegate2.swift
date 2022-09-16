@@ -8,7 +8,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Point.setup(
             clientId: "PointReferenceId",
             clientSecret: "PointReferenceSecret",
-            queryTypes: Set(HealthQueryType.allCases),
             environment: .development)
         return true
     }

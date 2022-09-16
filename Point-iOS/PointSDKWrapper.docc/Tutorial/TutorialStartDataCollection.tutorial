@@ -7,11 +7,11 @@
         Learn how to use Point HealthKit, the SDK service that integrates with Apple's HealthKit to collect user Health data.
     }
     
-    @Section(title: "Background Listeners") {
+    @Section(title: "Listeners") {
         @ContentAndMedia {
-            As Point Health Service generates some of the metrics and insights in a daily or weekly basis, it's important to keep it as most updated as possibly to avoid generating them with missing data. This way, we cannot just rely on the user to periodically open his app so we can upload his Health data.
+            As Point Health Service generates some of the metrics and insights in a daily or weekly basis, it's important to keep it as most updated as possibly to avoid generating them with missing data. This way, we cannot just rely on the user to periodically open their app so we can upload their Health data.
             
-            For this, we can use background listeners, short lived tasks that run periodically in background (even when the app is closed) to upload new data.
+            For this, we can use listeners, short lived tasks that run periodically, even in background (or when the app is closed), to upload new data.
         }
         
         @Steps {
@@ -38,51 +38,11 @@
             }
             
             @Step {
-                Go back to the AppDelegate. Create a Task and call `Point.healthKit.setupAllBackgroundQueries()`.
+                Go back to the AppDelegate. Create a Task and call `Point.healthKit.startAllListeners()`.
                 
                 This will create and run Observer Queries that keep listening for HealthKit notification of new samples. Apple suggests running this on the App Delegate to make sure these queries are running every time your app is launched or waken up.
                 
-                @Code(name: "AppDelegate.swift", file: "TutorialCodeAppDelegate3.swift", previousFile: "TutorialCodeAppDelegate2.swift")
-            }
-
-            @Step {
-                Go back the ViewController. Now we must actively enable the background deliveries we allowed in the first step. Just under `setUserToken`, call `enableAllBackgroundDelivery`.
-                
-                We are doing this here because we need to do this after the user has granted permission and is authenticated.
-                
-                @Code(name: "ViewController.swift", file: "TutorialCodeViewController4.swift", previousFile: "TutorialCodeViewController3.swift")
-            }
-        }
-    }
-
-    @Section(title: "Foreground Listeners") {
-        @ContentAndMedia {
-            Your app is now able to get data when it's on background. Now, it's time to enable the Foreground Listeners to get Health data in real time when your user is using your app.
-            
-            Learn how to enable the foreground listeners and how to stop them when going to background.
-        }
-    
-        @Steps {
-            @Step {
-                In the ViewController, add a call to `enableAllForegroundListeners`.
-                
-                This will create long-running queries that listen for new samples and upload them while your app is in foreground. We are enabling them here to make sure that it happens after the user has granted permissions.
-                
-                @Code(name: "ViewController.swift", file: "TutorialCodeViewController5.swift", previousFile: "TutorialCodeViewController4.swift")
-            }
-
-            @Step {
-                Now, go back to the AppDelegate, in "applicationWillResignActive" call ``PointSDK/HealthKitManager/stopAllForegroundListeners()``.
-                
-                The foreground listeners won't run in background if you don't stop them here, but we suggest doing this to avoid conflicts when bringing your app to foreground. Note that in this single view example we are enabling these listeners again every time the view is displayed in foreground.  
-                
                 @Code(name: "AppDelegate.swift", file: "TutorialCodeAppDelegate4.swift", previousFile: "TutorialCodeAppDelegate3.swift")
-            }
-
-            @Step {
-                Your app is now collecting all Health data that we need! Before continuing to the next tutorial, take some time to add some samples in Health or using a Watch device to see the data collection in action.
-                
-                @Image(source: "AppleHealth", alt: "A image showing Apple's Health App in the Browse tab.")
             }
         }
     }

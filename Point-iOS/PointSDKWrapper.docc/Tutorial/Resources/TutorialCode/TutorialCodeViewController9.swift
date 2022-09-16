@@ -25,26 +25,16 @@ class ViewController: UIViewController {
             } catch {
                 print("Error setting the user token or fetching user past data: \(error)")
             }
-
-            do {
-                let _ = try await Point.healthKit?.enableAllBackgroundDelivery()
-            } catch {
-                print("Error enabling background deliveries: \(error)")
-            }
-
-            do {
-                let _ = try await Point.healthKit?.enableAllForegroundListeners()
-            } catch {
-                print("Error enabling foreground listeners: \(error)")
-            }
             
             await getUserData()
+
+            await getHeathMetrics()
         }
     }
     
     @MainActor func getUserData() async {
         do {
-            guard let userData = try await Point.healthDataService.getUserData() else {
+            guard let userData = try await Point.healthService.getUserData() else {
                 print("No user data.")
                 return
             }
@@ -58,6 +48,26 @@ class ViewController: UIViewController {
             
         } catch {
             print("Error getting user data: \(error)")
+        }
+    }
+
+    @MainActor func getHeathMetrics() async {
+        do {
+            let metrics = try await Point.healthDataService.getHealthMetrics(
+                filter: [HealthMetric.Kind.restingHr],
+                workoutId: nil,
+                date: nil
+            )
+            
+            guard let metric = metrics.first else {
+                print("No health metrics.")
+                return
+            }
+            metricLabel.text = "Metric type: \(metric.type)"
+            metricValueLabel.text = "Value: \(metric.value)"
+            metricVarianceLabel.text = "Variance: \(metric.variance ?? 0)"
+        } catch {
+            print("Error getting health metrics: \(error)")
         }
     }
 }
