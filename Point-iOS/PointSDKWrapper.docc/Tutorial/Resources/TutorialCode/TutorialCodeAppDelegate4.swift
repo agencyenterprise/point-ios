@@ -8,16 +8,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Point.setup(
             clientId: "PointReferenceId",
             clientSecret: "PointReferenceSecret",
-            queryTypes: Set(HealthQueryType.allCases),
             environment: .development)
+        Point.setupHealthkitIntegration(queryTypes: Set(HealthQueryType.allCases))
         Task {
-            await Point.healthKit?.setupAllBackgroundQueries()
+            await Point.healthKit?.startAllListeners()
         }
         return true
-    }
-
-    func applicationWillResignActive(_ application: UIApplication) {
-        Point.healthKit?.stopAllForegroundListeners()
     }
     //Other AppDelegateFunctions
 }

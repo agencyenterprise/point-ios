@@ -30,9 +30,9 @@
             
             - [Accessing Point Health Service](https://agencyenterprise.github.io/point-ios/documentation/pointsdk/pointapi)
 
-            - [Creating an external user](https://github.com/agencyenterprise/point-ios/wiki/Registering-and-authenticating-external-users-at-Point#creating-an-external-user)
+            - [Creating a Point user](https://www.areyouonpoint.co/docs/authenticating-users#creating-an-external-user)
 
-            - [Getting an access token for a specific user](https://github.com/agencyenterprise/point-ios/wiki/Registering-and-authenticating-external-users-at-Point#getting-an-access-token-for-a-specific-user)
+            - [Getting an access token for a specific user](https://www.areyouonpoint.co/docs/authenticating-users#getting-an-access-token-for-a-specific-user)
         }
     }
 }

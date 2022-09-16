@@ -4,6 +4,9 @@ import PointSDK
 class ViewController: UIViewController {
     @IBOutlet weak var userLabel: UILabel!
     @IBOutlet weak var workoutLabel: UILabel!
+    @IBOutlet weak var metricLabel: UILabel!
+    @IBOutlet weak var metricValueLabel: UILabel!
+    @IBOutlet weak var metricVarianceLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,29 +25,25 @@ class ViewController: UIViewController {
             } catch {
                 print("Error setting the user token or fetching user past data: \(error)")
             }
-
-            do {
-                let _ = try await Point.healthKit?.enableAllBackgroundDelivery()
-            } catch {
-                print("Error enabling background deliveries: \(error)")
-            }
-
-            do {
-                let _ = try await Point.healthKit?.enableAllForegroundListeners()
-            } catch {
-                print("Error enabling foreground listeners: \(error)")
-            }
             
             await getUserData()
         }
     }
     
-    func getUserData() async {
+    @MainActor func getUserData() async {
         do {
             guard let userData = try await Point.healthDataService.getUserData() else {
                 print("No user data.")
                 return
             }
+            userLabel.text = "User email is: \(userData.email ?? "Not provided")"
+
+            guard let lastWorkout = userData.lastWorkout?.activityName else {
+                print("No workouts available yet")
+                return
+            }
+            workoutLabel.text = "User's last workout was: \(lastWorkout)"
+            
         } catch {
             print("Error getting user data: \(error)")
         }

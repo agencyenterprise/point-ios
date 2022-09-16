@@ -5,7 +5,7 @@ Access comprehensive health and fitness user data collected from across multiple
 Point SDK provides an easy, “plug-and-play” way for you to get access to the full-range of user health metrics powered by Point.
 
 With Point SDK, you can:
-- Collect user health and fitness data through Apple HealthKit and have it processed by Point. 
+- Collect user health and fitness data through Apple HealthKit and/or Fitbit and have it processed by Point.
 - Decide the granularity of health and fitness data you would like to use from the wearable devices, depending on your app needs.
 - Retrieve digested health metrics in a normalized, consistent data format across all devices
 
@@ -23,7 +23,6 @@ See <doc:AuthenticatingUsers> to learn how to link your user accounts with Point
 See <doc:GettingStarted> to learn how to configure you project and start using the SDK.
 
 We also provide an interactive <doc:TutorialTableOfContents> to learn how to set up a basic app using the SDK.
-
 
 ## Topics
 

@@ -8,11 +8,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Point.setup(
             clientId: "PointReferenceId",
             clientSecret: "PointReferenceSecret",
-            queryTypes: Set(HealthQueryType.allCases),
             environment: .development)
-        Task {
-            await Point.healthKit?.setupAllBackgroundQueries()
-        }
+        Point.setupHealthkitIntegration(queryTypes: Set(HealthQueryType.allCases))
         return true
     }
     //Other AppDelegateFunctions

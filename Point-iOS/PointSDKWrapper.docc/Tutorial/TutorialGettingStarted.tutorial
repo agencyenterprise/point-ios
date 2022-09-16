@@ -62,9 +62,17 @@
             @Step {
                 Now, in `application(didFinishLaunchingWithOptions:)` call the set up function of the SDK. In `queryTypes` use all types and in `environment` use `.development`.
                 
-                Here you must provide your Client ID and Client Secret. Also, you must provide what Health data types you wish to collect from Apple's Health. This information will be used later by the SDK to request user´s authorizations and to know which data is to be collected. We recommend using all data types available.
+                Here you must provide your Client ID and Client Secret.
                 
                 @Code(name: "AppDelegate.swift", file: "TutorialCodeAppDelegate2.swift")
+            }
+
+            @Step {
+                The next step is setting up Point's integration with Apple's HealthKit.
+
+                Here you must provide what Health data types you wish to collect from Apple's Health. This information will be used later by the SDK to request user's authorizations and to know which data is to be collected. We recommend using all data types available.
+                
+                @Code(name: "AppDelegate.swift", file: "TutorialCodeAppDelegate3.swift")
             }
 
             @Step {
@@ -84,9 +92,9 @@
             }
 
             @Step {
-                Now, call `Point.setUserToken(accessToken:)` passing a development user token. If you don't have one already, check [here](https://github.com/agencyenterprise/point-ios/wiki/Registering-and-authenticating-external-users-at-Point#getting-an-access-token-for-a-specific-user) how to obtain one. 
+                Now, call `Point.setUserToken(accessToken:)` passing a development user token. If you don't have one already, check [here](https://www.areyouonpoint.co/docs/authenticating-users#getting-an-access-token-for-a-specific-user) how to obtain one.
                 
-                Each time you set a token, the SDK will trigger a process that collects the user's past Health data, to a maximum of one year. This is important for us to generate more accurate metrics for your user and to provide them as soom as them start using your app. Although, you can disable this process by calling `Point.setUserToken(accessToken:, shouldSyncData: false)` instead.
+                Each time you set a token, the SDK will trigger a process that collects four months worth of data from Health. This is important for us to generate more accurate metrics for your user and to provide them as soon as they start using your app. When finished, the SDK will start collecting older data, up until one year ago. You can disable this second sync by calling `Point.setUserToken(accessToken:, shouldSyncHistorialData: false)` instead.
                 
                 @Code(name: "ViewController.swift", file: "TutorialCodeViewController3.swift")
             }
@@ -96,7 +104,7 @@
                 
                 To add samples to your device, open the Health app, go to the Browse tab, and select a sample to add. Remember to add a sample type that you have set up the SDK with and given permission, otherwise you won't be able to collect it. For now, we suggest running this app in a simulator so you can add or remove data as you wish, but for a more realistic experience you can run in an iPhone linked to a wearable like Apple Watch.
                 
-                @Image(source: "HistoricalData", alt: "Logs shows debug prints indicating that past data is being collected, with an workout sample being uploaded.")
+                @Image(source: "HistoricalData", alt: "Logs shows debug prints indicating that past data is being collected.")
             }
         }
     }
