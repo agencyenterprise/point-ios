@@ -39,7 +39,7 @@ Then, select the dependency rule and press **Add Package**.
 Add the following line to your `Podfile`:
 
 ```ruby
-pod 'PointSDK', '~> 1.1.1'
+pod 'PointSDK', '~> 1.4.1'
 ```
 
 Then, run `pod install`.
